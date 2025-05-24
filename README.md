@@ -27,4 +27,6 @@ Your OBS scene needs to be set up ahead of time. Whatever is set up will be reco
 ## Notes
 For help getting timestamps, check out [Timestamp Converter](https://www.timestamp-converter.com/).
 
-Common timestamps are in seconds. This tool uses milliseconds.
+Common timestamps are in seconds. This tool uses milliseconds.  
+
+Timestamps you pass should be in your own local time zone.  
