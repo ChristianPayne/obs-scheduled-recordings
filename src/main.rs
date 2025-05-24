@@ -7,9 +7,11 @@ use tokio::time;
 #[derive(Parser)]
 struct Args {
     #[arg(short, long)]
-    password: String,
+    password: Option<String>,
     #[arg(short, long)]
     ip: Option<String>,
+    #[arg(long)]
+    port: Option<u16>,
     #[arg(short, long)]
     start_time: Option<u64>,
     #[arg(short, long)]
@@ -26,7 +28,8 @@ enum RecordingState {
 async fn main() -> Result<()> {
     let args = Args::parse();
     let ip = args.ip.unwrap_or("localhost".to_string());
-    let client = Client::connect(ip, 4455, Some(args.password)).await?;
+    let port = args.port.unwrap_or(4455);
+    let client = Client::connect(ip, port, args.password).await?;
 
     let mut recording_state = get_recording_status(&client).await?;
 
